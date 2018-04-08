@@ -63,6 +63,57 @@ gulp.task('prepare-svg', function () {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('prepare-svg-raw', function () {
+    return gulp
+        .src('src/svg/*/*.svg')
+        // Minify SVG files
+        .pipe(svgmin(function (file) {
+            var prefix = path.basename(file.relative, path.extname(file.relative));
+            return {
+                plugins: [
+                    {
+                        inlineStyles: {
+                            onlyMatchedOnce: false
+                        }
+                    },
+                    {
+                        removeAttrs: {
+                            attrs: ['data.*', 'viewBox']
+                        }
+                    },
+                    {
+                        mergePaths: true
+                    },
+                    {
+                        cleanupIDs: {
+                            prefix: prefix,
+                            minify: true
+                        }
+                    }
+                ]
+            };
+        }))
+        // Remove unused tags
+        .pipe(cheerio({
+            run: function ($, file) {
+                $('linearGradient').remove();
+                $('radialGradient').remove();
+                $('style').remove();
+                $('path').each(function(i, el) {
+                    var fillAttr = $(el).attr('fill');
+                    if (fillAttr && fillAttr.indexOf('url(#linear-gradient') === 0) {
+                        $(el).remove();
+                    }
+                });
+                $('[fill="#0f0"]').attr('fill', 'currentColor');
+            },
+            parserOptions: {
+                xmlMode: true
+            }
+        }))
+        .pipe(gulp.dest('dist/svg'));
+});
+
 gulp.task('prepare-js', function () {
     return gulp
         .src(['src/js/iqons.js'])
@@ -78,4 +129,4 @@ gulp.task('prepare-js', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['prepare-svg', 'prepare-js']);
+gulp.task('default', ['prepare-svg', 'prepare-svg-raw', 'prepare-js']);
