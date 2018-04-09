@@ -129,4 +129,9 @@ gulp.task('prepare-js', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['prepare-svg', 'prepare-svg-raw', 'prepare-js']);
+gulp.task('prepare-coffee', function () {
+    return gulp.src('src/iqons.coffee')
+        .pipe(gulp.dest('dist'))
+})
+
+gulp.task('default', ['prepare-svg', 'prepare-svg-raw', 'prepare-js', 'prepare-coffee']);
