@@ -10,31 +10,28 @@ requireDir = (dir) ->
     r = dir
     _.zipObject _.map(r.keys(), (x) -> x.slice 2), r.keys().map(r)
   else
-    r = require
-    isNodeModules = /^\w/.test dir
-    if isNodeModules
-      dir = __dirname + '/../../node_modules/' + dir
+    dir = __dirname + '/' + dir
     files = fs.readdirSync dir
     _.zipObject files, _.map files, (svg) ->
       fs.readFileSync dir + '/' + svg, 'utf8'
 
 parts =
   top: if window?
-    requireDir require.context '../dist/svg/top', false, /\.svg$/
+    requireDir require.context './svg/top', false, /\.svg$/
   else
-    requireDir '../dist/svg/top'
+    requireDir './svg/top'
   side: if window?
-    requireDir require.context '../dist/svg/side', false, /\.svg$/
+    requireDir require.context './svg/side', false, /\.svg$/
   else
-    requireDir '../dist/svg/side'
+    requireDir './svg/side'
   face: if window?
-    requireDir require.context '../dist/svg/face', false, /\.svg$/
+    requireDir require.context './svg/face', false, /\.svg$/
   else
-    requireDir '../dist/svg/face'
+    requireDir './svg/face'
   bottom: if window?
-    requireDir require.context '../dist/svg/bottom', false, /\.svg$/
+    requireDir require.context './svg/bottom', false, /\.svg$/
   else
-    requireDir '../dist/svg/bottom'
+    requireDir './svg/bottom'
 
 COLORS = [
   '#fb8c00'
