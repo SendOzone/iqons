@@ -1,40 +1,95 @@
 # coffeelint: disable=max_line_length
 _ = require 'lodash'
 
-unless window?
-  _fs = 'fs'
-  fs = require _fs
-
-requireDir = (dir) ->
-  if dir.keys?
-    r = dir
-    _.zipObject _.map(r.keys(), (x) -> x.slice 2), r.keys().map(r)
-  else
-    r = require
-    isNodeModules = /^\w/.test dir
-    if isNodeModules
-      dir = __dirname + '/../../node_modules/' + dir
-    files = fs.readdirSync dir
-    _.zipObject files, _.map files, (svg) ->
-      fs.readFileSync dir + '/' + svg, 'utf8'
-
 parts =
-  top: if window?
-    requireDir require.context '../dist/svg/top', false, /\.svg$/
-  else
-    requireDir '../dist/svg/top'
-  side: if window?
-    requireDir require.context '../dist/svg/side', false, /\.svg$/
-  else
-    requireDir '../dist/svg/side'
-  face: if window?
-    requireDir require.context '../dist/svg/face', false, /\.svg$/
-  else
-    requireDir '../dist/svg/face'
-  bottom: if window?
-    requireDir require.context '../dist/svg/bottom', false, /\.svg$/
-  else
-    requireDir '../dist/svg/bottom'
+  top:
+    'top_01.svg': require './svg/top/top_01.svg'
+    'top_02.svg': require './svg/top/top_02.svg'
+    'top_03.svg': require './svg/top/top_03.svg'
+    'top_04.svg': require './svg/top/top_04.svg'
+    'top_05.svg': require './svg/top/top_05.svg'
+    'top_06.svg': require './svg/top/top_06.svg'
+    'top_07.svg': require './svg/top/top_07.svg'
+    'top_08.svg': require './svg/top/top_08.svg'
+    'top_09.svg': require './svg/top/top_09.svg'
+    'top_10.svg': require './svg/top/top_10.svg'
+    'top_11.svg': require './svg/top/top_11.svg'
+    'top_12.svg': require './svg/top/top_12.svg'
+    'top_13.svg': require './svg/top/top_13.svg'
+    'top_14.svg': require './svg/top/top_14.svg'
+    'top_15.svg': require './svg/top/top_15.svg'
+    'top_16.svg': require './svg/top/top_16.svg'
+    'top_17.svg': require './svg/top/top_17.svg'
+    'top_18.svg': require './svg/top/top_18.svg'
+    'top_19.svg': require './svg/top/top_19.svg'
+    'top_20.svg': require './svg/top/top_20.svg'
+    'top_21.svg': require './svg/top/top_21.svg'
+  side:
+    'side_01.svg': require './svg/side/side_01.svg'
+    'side_02.svg': require './svg/side/side_02.svg'
+    'side_03.svg': require './svg/side/side_03.svg'
+    'side_04.svg': require './svg/side/side_04.svg'
+    'side_05.svg': require './svg/side/side_05.svg'
+    'side_06.svg': require './svg/side/side_06.svg'
+    'side_07.svg': require './svg/side/side_07.svg'
+    'side_08.svg': require './svg/side/side_08.svg'
+    'side_09.svg': require './svg/side/side_09.svg'
+    'side_10.svg': require './svg/side/side_10.svg'
+    'side_11.svg': require './svg/side/side_11.svg'
+    'side_12.svg': require './svg/side/side_12.svg'
+    'side_13.svg': require './svg/side/side_13.svg'
+    'side_14.svg': require './svg/side/side_14.svg'
+    'side_15.svg': require './svg/side/side_15.svg'
+    'side_16.svg': require './svg/side/side_16.svg'
+    'side_17.svg': require './svg/side/side_17.svg'
+    'side_18.svg': require './svg/side/side_18.svg'
+    'side_19.svg': require './svg/side/side_19.svg'
+    'side_20.svg': require './svg/side/side_20.svg'
+    'side_21.svg': require './svg/side/side_21.svg'
+  face:
+    'face_01.svg': require './svg/face/face_01.svg'
+    'face_02.svg': require './svg/face/face_02.svg'
+    'face_03.svg': require './svg/face/face_03.svg'
+    'face_04.svg': require './svg/face/face_04.svg'
+    'face_05.svg': require './svg/face/face_05.svg'
+    'face_06.svg': require './svg/face/face_06.svg'
+    'face_07.svg': require './svg/face/face_07.svg'
+    'face_08.svg': require './svg/face/face_08.svg'
+    'face_09.svg': require './svg/face/face_09.svg'
+    'face_10.svg': require './svg/face/face_10.svg'
+    'face_11.svg': require './svg/face/face_11.svg'
+    'face_12.svg': require './svg/face/face_12.svg'
+    'face_13.svg': require './svg/face/face_13.svg'
+    'face_14.svg': require './svg/face/face_14.svg'
+    'face_15.svg': require './svg/face/face_15.svg'
+    'face_16.svg': require './svg/face/face_16.svg'
+    'face_17.svg': require './svg/face/face_17.svg'
+    'face_18.svg': require './svg/face/face_18.svg'
+    'face_19.svg': require './svg/face/face_19.svg'
+    'face_20.svg': require './svg/face/face_20.svg'
+    'face_21.svg': require './svg/face/face_21.svg'
+  bottom:
+    'bottom_01.svg': require './svg/bottom/bottom_01.svg'
+    'bottom_02.svg': require './svg/bottom/bottom_02.svg'
+    'bottom_03.svg': require './svg/bottom/bottom_03.svg'
+    'bottom_04.svg': require './svg/bottom/bottom_04.svg'
+    'bottom_05.svg': require './svg/bottom/bottom_05.svg'
+    'bottom_06.svg': require './svg/bottom/bottom_06.svg'
+    'bottom_07.svg': require './svg/bottom/bottom_07.svg'
+    'bottom_08.svg': require './svg/bottom/bottom_08.svg'
+    'bottom_09.svg': require './svg/bottom/bottom_09.svg'
+    'bottom_10.svg': require './svg/bottom/bottom_10.svg'
+    'bottom_11.svg': require './svg/bottom/bottom_11.svg'
+    'bottom_12.svg': require './svg/bottom/bottom_12.svg'
+    'bottom_13.svg': require './svg/bottom/bottom_13.svg'
+    'bottom_14.svg': require './svg/bottom/bottom_14.svg'
+    'bottom_15.svg': require './svg/bottom/bottom_15.svg'
+    'bottom_16.svg': require './svg/bottom/bottom_16.svg'
+    'bottom_17.svg': require './svg/bottom/bottom_17.svg'
+    'bottom_18.svg': require './svg/bottom/bottom_18.svg'
+    'bottom_19.svg': require './svg/bottom/bottom_19.svg'
+    'bottom_20.svg': require './svg/bottom/bottom_20.svg'
+    'bottom_21.svg': require './svg/bottom/bottom_21.svg'
 
 COLORS = [
   '#fb8c00'
